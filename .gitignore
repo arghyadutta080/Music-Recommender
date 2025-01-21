@@ -27,3 +27,4 @@ client/*.sw?
 server/venv
 server/instance
 server/.env
+server/.cache
