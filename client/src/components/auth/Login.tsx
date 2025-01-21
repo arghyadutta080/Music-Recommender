@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginForm, loginSchema } from "../../lib/schema/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { userLogin } from "../../utils";
 
 const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     const {
         register,
@@ -19,11 +21,13 @@ const Login = () => {
         setIsLoading(true);
         try {
             // Handle login logic here
-            console.log(data);
+            const response = await userLogin(data.username, data.password);
+            console.log(response);
         } catch (error) {
             console.error(error);
         } finally {
             setIsLoading(false);
+            navigate("/");
         }
     };
 

@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpForm, signUpSchema } from "../../lib/schema/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { registerWithEmail } from "../../api";
 
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -19,11 +21,16 @@ const SignUp = () => {
     setIsLoading(true);
     try {
       // Handle signup logic here
-      console.log(data);
+      const response = await registerWithEmail({
+        username: data.username,
+        password: data.password,
+      });
+      console.log(response);
     } catch (error) {
       console.error(error);
     } finally {
       setIsLoading(false);
+      navigate("/auth/login");
     }
   };
   return (

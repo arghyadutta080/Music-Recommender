@@ -4,6 +4,8 @@ from app.extensions import db, migrate
 from app.routes.auth import auth_bp
 from app.routes.profile import profile_bp
 from app.routes.mood import mood_bp
+from flask_cors import CORS
+
 
 def create_app():
     app = Flask(__name__)
@@ -11,6 +13,7 @@ def create_app():
 
     # Initialize extensions
     db.init_app(app)
+    CORS(app)
     migrate.init_app(app, db)
 
     # Register blueprints
