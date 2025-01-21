@@ -1,8 +1,7 @@
 from flask import jsonify
 from app.models import User
 from app.extensions import db
-from app.services.auth_service import generate_jwt_token, decode_jwt_token
-from app.services.token_service import blacklist_token
+from app.services.token_service import generate_jwt_token, decode_jwt_token, blacklist_token
 
 def register_user(request):
     data = request.json

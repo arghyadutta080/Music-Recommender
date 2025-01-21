@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.models import User
-from app.services.auth_service import decode_jwt_token
-from app.services.token_service import is_token_blacklisted
+from app.services.token_service import decode_jwt_token, is_token_blacklisted
 from app.extensions import db
 
 profile_bp = Blueprint('profile', __name__)
