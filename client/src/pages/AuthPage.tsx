@@ -1,8 +1,18 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import img from "../assets/auth-bg.png";
 import { Signup, Login } from "../components/auth";
+import { useUserStore } from "../lib/stores";
+import { useEffect } from "react";
 
 const AuthPage = () => {
+  const { userState } = useUserStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userState.userData) {
+      navigate("/");
+    }
+  }, [userState.userData]);
   
   return (
     <div className="min-h-screen flex flex-col">

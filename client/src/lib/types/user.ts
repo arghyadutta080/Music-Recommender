@@ -8,6 +8,7 @@ export interface userStateType {
     userLoading: boolean;
 }
 
-export interface userActionsType {
-    setUserData: () => void;
+export interface userStoreType {
+    userState: userStateType;
+    setUser: (userInfo: userStateType) => void;
 }

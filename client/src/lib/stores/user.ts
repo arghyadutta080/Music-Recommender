@@ -1,13 +1,11 @@
 import { create } from 'zustand';
-import { populateUserDetails } from '../actions';
-import { userActionsType, userStateType } from '../types';
+import { userStateType, userStoreType } from '../types';
 
-const userState: userStateType = {
-    userData: null,
-    userLoading: false,
-};
-export const useUser = create<userActionsType>((set) => ({
-    ...userState,
-    setUserData: () => populateUserDetails(set),
+export const useUserStore = create<userStoreType>((set) => ({
+    userState: {
+        userData: null,
+        userLoading: false,
+    },
+    setUser: (userInfo: userStateType) => set(() => ({ userState: userInfo })),
     // Write other reducers with proper actions like above.
 }));
